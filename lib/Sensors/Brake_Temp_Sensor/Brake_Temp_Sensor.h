@@ -4,7 +4,7 @@
 #include <Arduino.h>
 #include "pinMap.h"
 
-struct BrakeTempCalibration {
+struct Brake_Temp_Calibration {
     static constexpr float CURRENT_MIN = 4.0f;    // 4mA
     static constexpr float CURRENT_MAX = 20.0f;   // 20mA
     static constexpr float TEMP_MIN = 0.0f;       // °C at 4mA
@@ -15,11 +15,11 @@ struct BrakeTempCalibration {
     float temp_offset = 0.0f;  // Calibration offset
 };
 
-class BrakeTempSensor {
+class Brake_Temp_Sensor {
 public:
     static constexpr float SHUNT_RESISTANCE = 10.0f; // Ω
     
-    BrakeTempSensor(uint8_t adc_pin, const BrakeTempCalibration &cal);
+    Brake_Temp_Sensor(uint8_t adc_pin, const Brake_Temp_Calibration &cal);
     
     bool initialize();
     bool read_data();
@@ -30,7 +30,7 @@ public:
 
 private:
     uint8_t adc_pin_;
-    BrakeTempCalibration cal_;
+    Brake_Temp_Calibration cal_;
     bool initialized_ = false;
     bool faulty_ = false;
     float temperature_ = NAN;
