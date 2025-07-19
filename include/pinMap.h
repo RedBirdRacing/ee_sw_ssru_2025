@@ -2,22 +2,22 @@
 #define PINMAP_H
 
 // === ADC pins ===
-#define POT1 ADC7
-#define POT2 ADC6
+#define POT1_RAW ADC7
+#define POT2_RAW ADC6
 
-#define BRAKE_TEMP1 PC0
-#define BRAKE_TEMP2 PC1
+#define BRAKE_TEMP1_RAW PC0
+#define BRAKE_TEMP2_RAW PC1
 
-#define LVB_S PC2 //LVB voltage
-#define PUMP_NTC_100k PC3
+#define LVB_VOLTAGE_RAW PC2 //LVB voltage
+#define PUMP_TEMP_RAW PC3
 
 // === Digital pins ===
 #define ENCODER_A PD3
 #define ENCODER_B PD4
 
-#define PUMP_FLOW  PD5
-#define TEMP_SENSOR PD6
-#define LVB_TEMP PD7
+#define PUMP_FLOW_RAW  PD5
+#define TEMP_SENSOR_RAW PD6
+#define LVB_TEMP_RAW PD7
 
 // === I2C Pins ===
 #define SDA PC4
