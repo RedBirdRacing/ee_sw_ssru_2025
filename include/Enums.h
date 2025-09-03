@@ -1,37 +1,27 @@
 #ifndef ENUMS_H
 #define ENUMS_H
 
-#include <Arduino.h>
+enum CAN_ID {
+  FRONT_100MS_1 = 0x700,
+  FRONT_100MS_2 = 0x701,
+  FRONT_100MS_3 = 0x702,
+  FRONT_1000MS = 0x703,
+  REAR_100MS_1 = 0x750,
+  REAR_100MS_2 = 0x751,
+  REAR_1000MS_1 = 0x752,
+  REAR_1000MS_2 = 0x753
+};
 
-namespace SSRU_CAN {
-    // CAN ID Definitions
-    constexpr uint16_t TORQUE_CMD_ID = 0x201; // Torque command from VCU
-    constexpr uint16_t ERROR_MSG_ID = 0x202; // Error message ID
+enum Pump_Status {
+  PUMP_OK = 0,
+  PUMP_NO_FLOW = 1,
+  PUMP_OVERHEAT = 2
+};
 
-    // Front SSRU Sensor IDs (starting from 0x700)
-    enum Front_SSRU_SensorID : uint16_t {
-        FRONT_POT1 = 0x700,
-        FRONT_POT2,
-        FRONT_BRAKE_TEMP1,
-        FRONT_BRAKE_TEMP2,
-        LVB_VOLTAGE,
-        PUMP_TEMP,
-        ENCODER_COUNT,
-        PUMP_FLOW,
-        TEMP_SENSOR,
-        LVB_TEMP,
-        FRONT_MPU6050_1,
-        FRONT_MPU6050_2
-    };
+enum Pump_Mode {
+  PUMP_MANUAL = 0,
+  PUMP_THERMAL = 1,
+  PUMP_FAILSAFE = 2
+};
 
-    // Rear SSRU Sensor IDs (starting from 0x750)
-    enum Rear_SSRU_SensorID : uint16_t {
-        REAR_POT1 = 0x750,
-        REAR_POT2,
-        REAR_BRAKE1,
-        REAR_BRAKE2,
-        REAR_MPU6050_3
-    };
-}
-
-#endif // Enums.h
+#endif // ENUMS_H
