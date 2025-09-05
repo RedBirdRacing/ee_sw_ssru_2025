@@ -28,25 +28,25 @@ void flowISR() {
 #endif
 
 void initSensors() {
-    Wire.begin();
+    /*Wire.begin();
     sensors.begin();
     mpu1.begin(MPU6050_ADDR_1);
     mpu1.setAccelerometerRange(MPU6050_RANGE_2_G);
     mpu1.setGyroRange(MPU6050_RANGE_250_DEG);
-    mpu1.setFilterBandwidth(MPU6050_BAND_5_HZ);
+    mpu1.setFilterBandwidth(MPU6050_BAND_5_HZ);*/
 #ifdef SSRU_FRONT
-    mpu2.begin(MPU6050_ADDR_2);
+    /*mpu2.begin(MPU6050_ADDR_2);
     mpu2.setAccelerometerRange(MPU6050_RANGE_2_G);
     mpu2.setGyroRange(MPU6050_RANGE_250_DEG);
-    mpu2.setFilterBandwidth(MPU6050_BAND_5_HZ);
+    mpu2.setFilterBandwidth(MPU6050_BAND_5_HZ);*/
     pinMode(ENCODER_A, INPUT);
     pinMode(ENCODER_B, INPUT);
     attachInterrupt(digitalPinToInterrupt(ENCODER_A), encoderISR, RISING);
-#elif defined(SSRU_REAR)
+/*#elif defined(SSRU_REAR)
     pinMode(PUMP_FLOW_IN, INPUT);
     PCICR |= (1 << PCIE2);
     PCMSK2 |= (1 << PCINT20); // PD4
-    attachInterrupt(digitalPinToInterrupt(PUMP_FLOW_IN), flowISR, RISING);
+    attachInterrupt(digitalPinToInterrupt(PUMP_FLOW_IN), flowISR, RISING);*/
 #endif
 }
 
@@ -56,7 +56,7 @@ void readPotentiometerScaled(uint8_t pin, uint8_t* high, uint8_t* low) {
     *low = value & 0xFF;
 }
 
-#ifdef SSRU_FRONT
+/*#ifdef SSRU_FRONT
 void readMPU6050Scaled(uint8_t addr, int8_t accel[3], int8_t gyro[3]) {
     sensors_event_t a, g;
     if (addr == MPU6050_ADDR_1) {
@@ -71,7 +71,7 @@ void readMPU6050Scaled(uint8_t addr, int8_t accel[3], int8_t gyro[3]) {
     gyro[1] = (int8_t)(g.gyro.y / 256);
     gyro[2] = (int8_t)(g.gyro.z / 256);
 }
-#endif
+#endif */
 
 void readDS18B20Scaled(uint8_t* high, uint8_t* low) {
     sensors.requestTemperatures();

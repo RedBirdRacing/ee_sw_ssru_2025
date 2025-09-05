@@ -21,17 +21,18 @@ void initFlowSensor() {
   PCICR |= (1 << PCIE2);
   PCMSK2 |= (1 << PCINT20); // PD4
 }
+#endif // SSRU_REAR
 
-ISR(PCINT2_vect) {
+/*ISR(PCINT2_vect) {
   if (PIND & (1 << PUMP_FLOW_IN)) flow_pulses++;
 }
-#endif
+#endif*/
 
 void setup() {
   SPI.begin();
   initCan();
   initSensors();
-  initPWM();
+  // initPWM();
 #ifdef SSRU_REAR
   initFlowSensor();
 #endif
@@ -42,21 +43,21 @@ void loop() {
   if (millis() - last100ms >= 100) {
     last100ms = millis();
 #ifdef SSRU_FRONT
-    sendCAN_0x700();
-    sendCAN_0x701();
-    sendCAN_0x702();
-#elif defined(SSRU_REAR)
-    sendCAN_0x750();
-    sendCAN_0x751();
+  // sendCAN_0x700();
+  // sendCAN_0x701();
+  sendCAN_0x702();
+/*#elif defined(SSRU_REAR)
+  sendCAN_0x750();
+  sendCAN_0x751();*/
 #endif
   }
   if (millis() - last1000ms >= 1000) {
     last1000ms = millis();
-#ifdef SSRU_FRONT
-    sendCAN_0x703();
+/*#ifdef SSRU_FRONT
+  sendCAN_0x703();
 #elif defined(SSRU_REAR)
-    sendCAN_0x752();
-    sendCAN_0x753();
-#endif
+  sendCAN_0x752();
+  sendCAN_0x753();
+#endif*/
   }
 }
